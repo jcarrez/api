@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+function mail(data) {
+    let apiurl = ""
+    let subj = document.getElementById('subj').value;
+    let mess = document.getElementById('mess').value;
+
+    if (subj == "" || mess == "") {
+        window.alert("Une erreur est survenue !");
+    };
+
+    if (subj !== "" && mess !== "") {
+        var XHR = new XMLHttpRequest();
+        XHR.open("POST", apiurl, true);
+        XHR.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        var t = {
+            "subj": subj,
+            "mess": mess
+        }
+        XHR.send(JSON.stringify(t));
+		console.log(t);
+    }
+}
+    </script>
+</head>
+<body>
+    <form action="#" method="POST" name="form" accept-charset="UTF-8">
+    <p>
+        <label for="text">Subject :</label>
+        <input type="text" name="subj" id="subj" required="true"><br>
+        <label for="text">Message :</label>
+        <input type="text" name="mess" id="mess" required="true"><br>		
+		<input value="Submit" type="button" onclick="mail()"/>
+    </p>
+    </form>
+</body>
+</html>
